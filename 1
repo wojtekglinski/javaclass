@@ -1,4 +1,4 @@
-package project5;
+package PRJ5;
 public class Circle2D {
 	
 	double x;
@@ -11,10 +11,10 @@ public class Circle2D {
 		radius = 1;
 	}
 	
-	public Circle2D(double x1, double y1, double rad1) {
+	public Circle2D(double x1, double y1, double radius1) {
 		x = x1;
 		y = y1;
-		radius = rad1;
+		radius = radius1;
 		
 	}
 	
@@ -27,23 +27,23 @@ public class Circle2D {
 	}
 	
 	
-	public boolean contains(double x1, double y1) {
-		double dx = x - x1;
-		double dy = y - y1;
-		double distance = Math.sqrt(dx * dx  + dy * dy);
-		if(distance < radius)
-			return true;
-		else
-			return false;
+	public boolean contains(double x, double y) {
+		return Math.sqrt(Math.pow(x - this.x, 2) + 
+				 Math.pow(y - this.y, 2)) 
+				 < radius;
+		
 	}
-	public boolean contains(double x1, double y1) {
-		double dx = x - other.x;
-		double dy = y - other.x;
-		double distance = Math.sqrt(dx * dx  + dy * dy);
-		if(radius >= other.radius + distance)
-			return true;
-		else
-			return false;
+	
+	public boolean contains(Circle2D circle) {
+		return Math.sqrt(Math.pow(circle.getX() - x, 2) + 
+				 Math.pow(circle.getY() - y, 2)) 
+				 <= Math.abs(radius - circle.getRadius());
+	}
+	
+	public boolean overlaps(Circle2D circle) {
+		return Math.sqrt(Math.pow(circle.getX() - x, 2) + 
+				 Math.pow(circle.getY() - y, 2)) 
+				 <= radius + circle.getRadius();
 	}
 	
 	
@@ -68,4 +68,3 @@ public class Circle2D {
 		this.radius = radius;
 	}
 }
-	
